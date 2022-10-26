@@ -1,0 +1,28 @@
+{
+    "sortiment" : [
+      {
+        "item": "Korv",
+        "amount": 15
+      },
+      {
+        "item": "Kaka",
+        "amount": 8
+      },
+      {
+        "item": "Kaffe",
+        "amount": 10
+      },
+      {
+        "item": "Godisstång",
+        "amount": 8
+      },
+      {
+        "item": "Dricka 33 cl",
+        "amount": 15
+      },
+      {
+        "item": "Dricka 50 cl",
+        "amount": 20
+      }
+    ]
+  }
