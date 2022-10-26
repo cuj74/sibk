@@ -23,7 +23,7 @@ function populateinventory() {
           function(json){
             var itable = document.getElementById("inventory");
             for (const [key, value] of Object.entries(json.sortiment)) {
-              //console.log(`${key} ${value.item} ${value.amount}`);
+
               var newRow = itable.insertRow();
 
               var newCellkey = newRow.insertCell();
@@ -73,8 +73,11 @@ function remove(kitem) {
 function emptycart() {  
     document.getElementById("total").innerHTML = "0";
     document.getElementById("cart").innerHTML = "";
-    itemlist = [];
-    Ordernum++;
+    if (itemlist.length > 0)
+    {
+        itemlist = [];
+        Ordernum++;
+    }
 }
 
 function orderinformation()
@@ -129,9 +132,9 @@ function orderinformation()
 
     }
     if (totalorderamount > 0)
-      {
+    {
         flashTotal();
-      }
+    }
 
     document.getElementById("total").innerHTML = totalorderamount;  
 
