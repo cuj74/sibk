@@ -27,6 +27,14 @@
       {
         "item": "Dubbel korv",
         "amount": 25
+      },
+      {
+        "item": "Godispåse",
+        "amount": 10
+      },
+      {
+        "item": "Ahlgrens bilar",
+        "amount": 20
       }
     ]
   }
