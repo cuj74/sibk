@@ -17,27 +17,29 @@ function populateinventory() {
               var newRow = itable.insertRow();
 
               var newCellkey = newRow.insertCell();
-              newCellkey.innerHTML = "<h4>"+`${value.item}`+"</h4>";
+              newCellkey.innerHTML = "<h4 class=\"display-3\">"+`${value.item}`+"</h4>";
 
 
               var newCellval = newRow.insertCell();
-              newCellval.innerHTML = "<h4><div id=\""+`${value.item}` + "\">" + `${value.amount}` + "</div></h4>";
+              newCellval.innerHTML = "<h4 class=\"display-3\"><div id=\""+`${value.item}` + "\">" + `${value.amount}` + "</div></h4>";
 
               var addButton = newRow.insertCell();
-              addButton.innerHTML = "<div class=\"btn btn-primary\" onclick=\"add('" + `${value.item}` + "')\"><h4>+</h4></div>";
+              addButton.innerHTML = "<div class=\"btn btn-primary\" onclick=\"add('" + `${value.item}` + "')\"><h4 class=\"display-3\">+</h4></div>";
 
               var removeButton = newRow.insertCell();
-              removeButton.innerHTML = "<div class=\"btn btn-secondary\" onclick=\"remove('" + `${value.item}` + "')\" ><h4>-</h4></div>";
+              removeButton.innerHTML = "<div class=\"btn btn-secondary\" onclick=\"remove('" + `${value.item}` + "')\" ><h4 class=\"display-3\">-</h4></div>";
                           
             }
           }
         );
 }
 
-
 var Ordernum = 1;
 var itemlist = new Array();
 var addaction = true;
+
+const h1 = document.createElement("h1");
+h1.setAttribute("class", "display-3");
 
 function add(kitem) {  
     itemlist.push(kitem);
@@ -90,7 +92,7 @@ function orderinformation()
 
       var headerCellkey = headerrow.insertCell();
       headerCellkey.colSpan="3";
-      headerCellkey.innerHTML = "<h4>Order " + Ordernum +"</h4>";
+      headerCellkey.innerHTML = "<h4 class=\"display-3\">Order " + Ordernum +"</h4>";
       
     }
 
@@ -103,16 +105,32 @@ function orderinformation()
         var newRow = tbodyRef.insertRow();
 
         var newCellval = newRow.insertCell();
-        var newTextval = document.createTextNode(`${value}`);
-        newCellval.appendChild(newTextval);     
+        
+        const h1 = document.createElement("h1");
+        h1.setAttribute("class", "display-3");
+        h1.appendChild(document.createTextNode(`${value}`));
+        
+        //var newTextval = document.createTextNode(`${value}`);
+        //newCellval.appendChild(newTextval);  
+        newCellval.appendChild(h1); 
 
         var newCellkey = newRow.insertCell();
-        var newTextkey = document.createTextNode(`${key}`);
-        newCellkey.appendChild(newTextkey);     
+        const h1_1 = document.createElement("h1");
+        h1_1.setAttribute("class", "display-3");
+        h1_1.appendChild(document.createTextNode(`${key}`));
+
+        //var newTextkey = document.createTextNode(`${key}`);
+        //newCellkey.appendChild(newTextkey);     
+        newCellkey.appendChild(h1_1);     
 
         var newCelltot = newRow.insertCell();
-        var newTexttot = document.createTextNode(`${itemtotal}`);
-        newCelltot.appendChild(newTexttot);     
+        const h1_2 = document.createElement("h1");
+        h1_2.setAttribute("class", "display-3");
+        h1_2.appendChild(document.createTextNode(`${itemtotal}`));
+
+        //var newTexttot = document.createTextNode(`${itemtotal}`);
+        //newCelltot.appendChild(newTexttot);     
+        newCelltot.appendChild(h1_2);     
 
     }
     if (totalorderamount > 0)
@@ -136,9 +154,9 @@ function flashTotal() {
     ordertext.classList.remove(typeofhighlight);
   }, 200)
 }
-
 </script>
-<style>body 
+<style>
+   body 
   {background-color: #495057;}
   #orderfloat {
     display: inline-block;
@@ -150,6 +168,14 @@ function flashTotal() {
   .lowlight{
     color: #FF5580;
   }
+  @media screen and (max-width: 1080px) {
+      h1 {
+            font-size: 60px;
+      }
+      h4 {
+            font-size: 45px;
+      }
+}
 </style>
     </head>
     <body>
@@ -158,20 +184,19 @@ function flashTotal() {
                 <div class="table-responsive"> 
                     <table class="table table-dark" id="orderfloat">
                         <tr>
-                            <td width="300"><h1>Summa&nbsp;<span id="total">0</span> kr</h1></td>
-                            <td><div class="btn btn-primary" onclick="emptycart()">Rensa</div></td>
+                            <td width="500"><h1 class="display-3">Summa&nbsp;<span id="total">0</span> kr</h1></td>
+                            <td><div class="btn btn-primary" onclick="emptycart()"><h4>Rensa</h4></div></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="table-responsive"> 
-                    <table id="inventory" cellspacing="0" cellpadding="0" class="table table-dark"></table>
+                    <table id="inventory" class="table table-dark"></table>
                 </div>
             </div>
             <script type="application/javascript">populateinventory();</script>
             <table id="cart" class="table table-dark"></table>
-            <span class="text-muted">v 0.1</span>
-
+            <span class="text-muted">v 0.2</span>
     </body>
 </html>
