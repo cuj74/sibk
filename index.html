@@ -3,7 +3,7 @@
         <meta name="author" content="Urban Johansson">
         <meta name=”viewport” content=”width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
+        <link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
 <script type="application/javascript">
 function populateinventory() {
   let inventorydata;    
@@ -153,21 +153,17 @@ function flashTotal() {
 </style>
     </head>
     <body>
-      
-      <table class="table table-dark" id="orderfloat">
-        <tr>
-            <td width="300"><h1>Summa&nbsp;<span id="total">0</span> kr</h1></td>
-            <td><div class="btn btn-primary" onclick="emptycart()">Rensa</div></td>
-        </tr>
-     </table>
-   
-      <table id="inventory" cellspacing="0" cellpadding="0" class="table table-dark">
-      </table>
-      <script type="application/javascript">
-        populateinventory();
-      </script>
-      <table id="cart" class="table table-dark">
-      </table>
-      <span class="text-muted">v 0.1</span>
+        <div class=”jumbotron”>
+            <table class="table table-dark" id="orderfloat">
+                <tr>
+                    <td width="300"><h1>Summa&nbsp;<span id="total">0</span> kr</h1></td>
+                    <td><div class="btn btn-primary" onclick="emptycart()">Rensa</div></td>
+                </tr>
+            </table>
+            <table id="inventory" cellspacing="0" cellpadding="0" class="table table-dark"></table>
+            <script type="application/javascript">populateinventory();</script>
+            <table id="cart" class="table table-dark"></table>
+            <span class="text-muted">v 0.1</span>
+        </div>
     </body>
 </html>
