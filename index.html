@@ -1,10 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="sv">
     <head>
         <meta name="author" content="Urban Johansson">
         <meta name=”viewport” content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <!-- <link rel=”stylesheet” href=”css/bootstrap-responsive.css”> -->
-<script type="application/javascript">
+        <title>Kiosk Stöpen IBK</title>
+<script>
 function populateinventory() {
   let inventorydata;    
   fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
@@ -37,9 +38,6 @@ function populateinventory() {
 var Ordernum = 1;
 var itemlist = new Array();
 var addaction = true;
-
-const h1 = document.createElement("h1");
-h1.setAttribute("class", "display-3");
 
 function add(kitem) {  
     itemlist.push(kitem);
@@ -196,8 +194,6 @@ function flashTotal() {
                 <table id="cart" class="table table-dark"></table>
                 <span class="text-muted">v 0.4</span>
             </div>
-            <script type="application/javascript">populateinventory();</script>
-            
-            
+            <script>populateinventory();</script>
     </body>
 </html>

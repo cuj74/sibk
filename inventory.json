@@ -1,40 +1,52 @@
 {
     "sortiment" : [
       {
-        "item": "Korv",
-        "amount": 15
-      },
-      {
-        "item": "Kaka",
-        "amount": 8
-      },
-      {
-        "item": "Kaffe",
+        "item": "Kaffe/Te",
         "amount": 10
       },
       {
-        "item": "Godisstång",
-        "amount": 8
+        "item": "Kaffebröd",
+        "amount": 10
       },
       {
         "item": "Dricka 33 cl",
         "amount": 15
       },
       {
-        "item": "Dricka 50 cl",
-        "amount": 25
+        "item": "Festis",
+        "amount": 10
       },
       {
-        "item": "Dubbel korv",
-        "amount": 25
+        "item": "Korv, enkel",
+        "amount": 15
+      },
+      {
+        "item": "Korv, dubbel",
+        "amount": 20
+      },
+      {
+        "item": "Kexchoklad",
+        "amount": 12
+      },
+      {
+        "item": "Liten chokladbit",
+        "amount": 8
+      },
+      {
+        "item": "Ahlgrens bilar",
+        "amount": 20
+      },
+      {
+        "item": "Chips",
+        "amount": 15
       },
       {
         "item": "Godispåse",
         "amount": 10
       },
       {
-        "item": "Ahlgrens bilar",
-        "amount": 20
+        "item": "Godisstång",
+        "amount": 5
       }
     ]
   }
