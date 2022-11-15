@@ -26,11 +26,11 @@
       },
       {
         "item": "Kexchoklad",
-        "amount": 12
+        "amount": 15
       },
       {
         "item": "Liten chokladbit",
-        "amount": 8
+        "amount": 10
       },
       {
         "item": "Ahlgrens bilar",
@@ -47,6 +47,10 @@
       {
         "item": "Godisstång",
         "amount": 5
+      },
+      {
+        "item": "Stora muffins",
+        "amount": 15
       }
     ]
   }
