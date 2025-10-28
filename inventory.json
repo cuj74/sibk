@@ -1,4 +1,9 @@
 {
+    "info": {
+      "phonenumber": "0701111111111",
+      "name": "Stöpen IBK",
+      "message": "kiosk"
+    },
     "sortiment" : [
       {
         "item": "Kaffe/Te",
