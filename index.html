@@ -50,12 +50,13 @@ function add(kitem) {
     itemlist.push(kitem);
     addaction = true;
     orderinformation();
-   clearQR(); 
+   //clearQR(); 
 }
+/*
 function clearQR() {  
     document.getElementById("qr-code").style.visibility='hidden'  
     document.getElementById("qr-code").innerHTML = "";
-}
+}*/
 function remove(kitem) {  
    
     var idx = itemlist.findIndex(fitem => fitem == kitem);
@@ -72,7 +73,6 @@ function remove(kitem) {
 function emptycart() {  
     document.getElementById("total").innerHTML = "0";
     document.getElementById("cart").innerHTML = "";
-    clearQR();
     if (itemlist.length > 0)
     {
         itemlist = [];
@@ -160,17 +160,20 @@ function flashTotal() {
 
 function showswish() {  
 
-  if (document.getElementById("qr-code").style.visibility=='visible' || itemlist.length == 0)
-    return;
-
+  if (itemlist.length == 0)
+    return 0;
+/*
   document.getElementById("qr-code").style.visibility='visible' 
   document.getElementById("qr-code").style.width=600+'px'; 
+  */
   handleInput();
+  return 1
 }
 </script>
 
-
 <style>
+
+
 
 #qr-code {
   overflow: hidden;
@@ -179,8 +182,8 @@ function showswish() {
   margin-top: 5px;
 }
 #qr-code * {
-  width: 350px;
-  height: 350px;
+  width: 800px;
+  height: 800px;
 }
 #qr-code img {
   image-rendering: pixelated;
@@ -193,21 +196,40 @@ function showswish() {
     position:fixed !important;
     position: absolute; /*ie6 */
     vertical-align: top;
-    z-index: 10;
+    z-index: 9;
     margin-top: 10px;
     margin-left: 3px;
+    width: 900px;
   }
-  .swishfloat {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 256px;
-    z-index: 7;
-    margin-top: 10px;
-    margin-left: 3px;
-    
-  }
+  .qrmodal {
+   background-color: rgba(144, 146, 145, 0.4); 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: table;
+  z-index: 10;
+}
+
+.qrmodal.hidden {
+  display: none;
+}
+
+.qrmodal .container {
+ display: table-cell;
+ text-align: center;
+ vertical-align: middle;
+ width: 500px;
+}
+
+.qrmodal .body {
+  /*box-shadow: 5px 10px #888888;*/
+  display: inline-block;
+  background-color: white;
+  border: 1px solid black; 
+  padding: 10px;
+}
 
   .highlight{
     color: #10FF80;
@@ -219,6 +241,11 @@ function showswish() {
       position: relative;
       top: 115px;
   }
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
+
   tr.spaceUnder>td {
   padding-bottom: 3em;
 }
@@ -232,31 +259,45 @@ function showswish() {
 }
 </style>
     </head>
-    <body>
-      
+    <body class="disable-dbl-tap-zoom">
+
+<div class="qrmodal hidden">
+  <div class="container">
+    <div class="body" id="qr-code"></div>
+  </div>
+</div>
 
 
-        <div class="col-lg-12">
-            <div class="table-responsive"> 
-                <div class="orderfloat2 d-inline p-2 bg-dark text-white border border-primary border-3 rounded" style="width: 600px;">
-                    <div class="display-3">Summa&nbsp;<span id="total">0</span> kr</div>
-                    <div class="btn btn-primary" onclick="emptycart()" style="position: absolute;top:1px;right:10px;"><h3>Rensa</h3></div>
-                    <div class="btn btn-primary" onclick="showswish()" style="position: absolute;top:64px;right:10px;"><h3>Swish</h3></div>
-                    <div id="qr-code" class="display-5"></div>
-                 </div>
-            </div>
-
+  <div class="orderfloat2 d-inline bg-dark text-white border border-primary border-3 rounded">
+    <div class="container-fluid">
+      <div class="row" style="margin: 4px;">
+        <div class="float-start col-6 display-5">
+          Summa&nbsp;<span id="total">0</span> kr
         </div>
-        
-        <div class="pushdown">
-            <div class="col-lg-12">
-                <div class="table-responsive"> 
-                    <table id="inventory" class="table table-dark"></table>
-                </div>
-            </div>
-            <table id="cart" class="table table-dark"></table>
-            <span class="text-muted">v 0.4</span>
+        <div class="col-3 btn btn-primary" onclick="emptycart()">
+          <span class="text-center display-5">Rensa</span>
         </div>
+        <div class="col-1"></div>
+        <div class="col-2 btn btn-primary" id="qrbutton">
+          <span class="text-center display-5">Swish</span>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+
+
+
+  
+  <div class="pushdown">
+      <div class="col-lg-12">
+          <div class="table-responsive"> 
+              <table id="inventory" class="table table-dark"></table>
+          </div>
+      </div>
+      <table id="cart" class="table table-dark"></table>
+      <span class="text-muted">v 0.4</span>
+  </div>
         
 
 
@@ -314,6 +355,7 @@ function showswish() {
         params = JSON.parse(atob(decodeURIComponent(window.location.hash.slice(1))));
       } catch (error) {
         console.error(error);
+        console.log("No valid hash found");
         clearHash();
        // restart();
       }
@@ -393,6 +435,26 @@ function showswish() {
       const baseURL = "swish://payment?data=";
       return baseURL + encodeURIComponent(JSON.stringify(swishData));
     }
+
+    var modal = document.querySelector(".qrmodal");
+    console.log(modal);
+    var container = modal.querySelector(".container");
+
+
+    document.querySelector("#qrbutton").addEventListener("click", function (e) {
+      document.querySelector("#qr-code").innerHTML = "";
+      if (showswish() == 1) {
+        modal.classList.remove("hidden");
+      } 
+      
+    });
+
+    document.querySelector(".qrmodal").addEventListener("click", function (e) {
+      if (e.target !== modal && e.target !== container) return;     
+      modal.classList.add("hidden");
+    });
+
+
   </script>
 
 
