@@ -4,7 +4,7 @@
         <meta name="author" content="Urban Johansson">
         <meta name=”viewport” content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <title>Kiosk Stöpen IBK</title>
+        <title>untitled</title>
 <script>
 let PhoneNumber = "";
 function populateinventory() {
@@ -16,7 +16,7 @@ function populateinventory() {
 
             document.title = "Kiosk " + json.info.name;
             PhoneNumber = json.info.phonenumber;
-            console.log("Loaded inventory for " + json.info.name);
+
             var itable = document.getElementById("inventory");
             
             
@@ -105,7 +105,7 @@ function orderinformation()
 
       var headerCellkey = headerrow.insertCell();
       headerCellkey.colSpan="3";
-      headerCellkey.innerHTML = "<h4 class=\"display-3\">Order " + Ordernum +"</h4>";
+      headerCellkey.innerHTML = "<h4 id=\"orderid\"class=\"display-3\">Order " + Ordernum +"</h4>";
       
     }
 
@@ -182,8 +182,8 @@ function showswish() {
   margin-top: 5px;
 }
 #qr-code * {
-  width: 800px;
-  height: 800px;
+  width: 820px;
+  height: 820px;
 }
 #qr-code img {
   image-rendering: pixelated;
@@ -202,7 +202,7 @@ function showswish() {
     width: 900px;
   }
   .qrmodal {
-   background-color: rgba(144, 146, 145, 0.4); 
+   background-color: rgba(1, 14, 8, 0.6); 
   position: fixed;
   top: 0;
   left: 0;
@@ -296,7 +296,7 @@ function showswish() {
           </div>
       </div>
       <table id="cart" class="table table-dark"></table>
-      <span class="text-muted">v 0.4</span>
+      <span class="text-muted">v 0.5</span>
   </div>
         
 
@@ -318,10 +318,6 @@ function showswish() {
     function setCreateLinkText() {
       const hashIndex = window.location.href.indexOf("#");
       const href = hashIndex === -1 ? window.location.href : window.location.href.substring(0, hashIndex);
-      /*
-      const el = document.getElementById("create-link");
-      el.innerText = href;
-      el.href = href;*/
     }
 
     function showInputView() {
@@ -337,7 +333,7 @@ function showswish() {
         t: document.title,
         p: PhoneNumber,
         a: document.getElementById("total").innerHTML,
-        m: "message",
+        m: "kiosk "+ document.getElementById("orderid").innerHTML,
       };
 
 
@@ -345,7 +341,6 @@ function showswish() {
       hashData.ae = 1;
       hashData.me = 1;
       window.location.hash = encodeURIComponent(btoa(JSON.stringify(hashData)));
-      //restart();
       parseHashAndUpdatePage();
     }
 
@@ -357,7 +352,6 @@ function showswish() {
         console.error(error);
         console.log("No valid hash found");
         clearHash();
-       // restart();
       }
       
       const title = params.t;
@@ -371,7 +365,7 @@ function showswish() {
         message = message.substring(0, 47) + "...";
       }
       const messageIsEditable = Boolean(params.me);
-
+/*
       console.log({
         title,
         payee,
@@ -381,10 +375,9 @@ function showswish() {
         message,
         messageIsEditable,
       });
-
+*/
       const swishCodeQrData = getSwishQrCodeData(payee, payeeIsEditable, amount, amountIsEditable, message, messageIsEditable);
-      //console.log(swishCodeQrData);
-
+  
        qrCode = new QRCode(qrCodeEl, {
           text: swishCodeQrData,
           colorDark: "#111111",
@@ -453,10 +446,6 @@ function showswish() {
       if (e.target !== modal && e.target !== container) return;     
       modal.classList.add("hidden");
     });
-
-
   </script>
-
-
     </body>
 </html>
