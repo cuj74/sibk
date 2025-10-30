@@ -9,12 +9,15 @@
 let PhoneNumber = "";
 function populateinventory() {
   let inventorydata;  
-  let KioskOwnerName;
-  
-  var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
-  console.log("Domain: " + domain.split('.')[0]);
-  let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${domain.split('.')[0]}.json`
-//fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
+  var domain = /:\/\/([^\/]+)/.exec(window.location.href);
+  var subdomain;
+  if (!domain || domain.length < 2) {
+    subdomain = "stopenibk-kiosk";
+  }
+  if(!subdomain){
+    subdomain = domain[1].split('.')[0];
+  }
+  let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${subdomain}.json`
   fetch(inventoryByDomain).then(
           function(u){ return u.json();}
         ).then(
@@ -22,10 +25,11 @@ function populateinventory() {
 
             document.title = "Kiosk " + json.info.name;
             PhoneNumber = json.info.phonenumber;
-            KioskOwnerName = json.info.name;
+            //KioskOwnerName = json.info.name;
+            document.getElementById("KioskOwnerName").innerHTML = json.info.name;
+
+
             var itable = document.getElementById("inventory");
-            
-            
             for (const [key, value] of Object.entries(json.sortiment)) {
 
               var newRow = itable.insertRow();
@@ -44,6 +48,10 @@ function populateinventory() {
               removeButton.innerHTML = "<div class=\"btn btn-secondary btn-lg\" style=\"width: 200px\" onclick=\"remove('" + `${value.item}` + "')\" ><h4 class=\"display-3\">&nbsp;-&nbsp;</h4></div>";
                           
             }
+          }
+        ).catch(
+          function(err){
+            console.log('Fetch Error :-S', err);
           }
         );
 }
@@ -248,6 +256,7 @@ function showswish() {
 </style>
     </head>
     <body class="disable-dbl-tap-zoom">
+          
 
 <div class="qrmodal hidden">
   <div class="container">
@@ -273,13 +282,14 @@ function showswish() {
 </div>
     
 <div class="pushdown">
+   
     <div class="col-lg-12">
         <div class="table-responsive"> 
-            <div><h3><span id="NameOf"></span></h3>
             <table id="inventory" class="table table-dark"></table>
         </div>
     </div>
     <table id="cart" class="table table-dark"></table>
+     <div class="text-center"><h4><span id="KioskOwnerName"></span></h4></div>
     <span class="text-muted">v 0.5</span>
 </div>
 <script>
@@ -399,9 +409,7 @@ function showswish() {
     }
 
     var modal = document.querySelector(".qrmodal");
-    console.log(modal);
     var container = modal.querySelector(".container");
-
 
     document.querySelector("#qrbutton").addEventListener("click", function (e) {
       document.querySelector("#qr-code").innerHTML = "";
@@ -415,7 +423,6 @@ function showswish() {
       modal.classList.add("hidden");
     });
 
-    document.getElementById("nameOf").innerHTML = KioskOwnerName;
   </script>
     </body>
 </html>
