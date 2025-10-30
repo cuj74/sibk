@@ -72,6 +72,39 @@
       {
         "item": "Inträde medlem",
         "amount": 40
+      },
+            {
+        "item": "Inträde dyrt",
+        "amount": 600
+      },
+      {
+        "item": "Inträde billigt",
+        "amount": 5
+      },
+      {
+        "item": "Små muffins",
+        "amount": 10
+      },
+      {
+        "item": "Milkshake",
+        "amount": 25
+      },
+      {
+        "item": "Inträde",
+        "amount": 60
+      },
+      {
+        "item": "Inträde medlem",
+        "amount": 40
+      },
+            {
+        "item": "Inträde dyrt",
+        "amount": 600
+      },
+      {
+        "item": "Inträde billigt",
+        "amount": 5
       }
+
     ]
   }
