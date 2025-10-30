@@ -11,7 +11,7 @@ function populateinventory() {
   let inventorydata;  
   
   var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
-  let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${domain}.json`
+  let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${domain.split('.')[0]}.json`
 //fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
   fetch(inventoryByDomain).then(
           function(u){ return u.json();}
