@@ -11,6 +11,7 @@ function populateinventory() {
   let inventorydata;  
   
   var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
+  console.log("Domain: " + domain.split('.')[0]);
   let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${domain.split('.')[0]}.json`
 //fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
   fetch(inventoryByDomain).then(
@@ -20,6 +21,8 @@ function populateinventory() {
 
             document.title = "Kiosk " + json.info.name;
             PhoneNumber = json.info.phonenumber;
+
+            document.getElementById("nameOf").innerHTML = json.info.name;
 
             var itable = document.getElementById("inventory");
             
@@ -54,13 +57,7 @@ function add(kitem) {
     itemlist.push(kitem);
     addaction = true;
     orderinformation();
-   //clearQR(); 
 }
-/*
-function clearQR() {  
-    document.getElementById("qr-code").style.visibility='hidden'  
-    document.getElementById("qr-code").innerHTML = "";
-}*/
 function remove(kitem) {  
    
     var idx = itemlist.findIndex(fitem => fitem == kitem);
@@ -70,8 +67,6 @@ function remove(kitem) {
       addaction = false;
       orderinformation();
     }
-    clearQR();
-
 }
 
 function emptycart() {  
@@ -281,6 +276,7 @@ function showswish() {
 <div class="pushdown">
     <div class="col-lg-12">
         <div class="table-responsive"> 
+            <div><h3><span id="NameOf"></span></h3>
             <table id="inventory" class="table table-dark"></table>
         </div>
     </div>
