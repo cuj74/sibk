@@ -12,7 +12,7 @@ function populateinventory() {
   var domain = /:\/\/([^\/]+)/.exec(window.location.href);
   var subdomain;
   if (!domain || domain.length < 2) {
-    subdomain = "stopenibk-kiosk";
+    subdomain = "inventory";
   }
   if(!subdomain){
     subdomain = domain[1].split('.')[0];

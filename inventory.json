@@ -1,33 +1,33 @@
 {
     "info": {
       "phonenumber": "0701111111111",
-      "name": "Stöpen IBK",
+      "name": "EXAMPLE",
       "message": "kiosk"
     },
     "sortiment" : [
       {
         "item": "Kaffe/Te",
-        "amount": 10
+        "amount": 100
       },
       {
         "item": "Kaffebröd",
-        "amount": 10
+        "amount": 8
       },
       {
         "item": "Dricka 33 cl",
-        "amount": 15
+        "amount": 17
       },
       {
         "item": "Festis",
-        "amount": 10
+        "amount": 12
       },
       {
         "item": "Korv, enkel",
-        "amount": 15
+        "amount": 20
       },
       {
         "item": "Korv, dubbel",
-        "amount": 20
+        "amount": 25
       },
       {
         "item": "Kexchoklad",
@@ -56,6 +56,22 @@
       {
         "item": "Stora muffins",
         "amount": 15
+      },
+      {
+        "item": "Små muffins",
+        "amount": 10
+      },
+      {
+        "item": "Milkshake",
+        "amount": 25
+      },
+      {
+        "item": "Inträde",
+        "amount": 60
+      },
+      {
+        "item": "Inträde medlem",
+        "amount": 40
       }
     ]
   }
