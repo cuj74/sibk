@@ -8,8 +8,12 @@
 <script>
 let PhoneNumber = "";
 function populateinventory() {
-  let inventorydata;    
-  fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
+  let inventorydata;  
+  
+  var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
+  let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${domain}.json`
+//fetch("https://raw.githubusercontent.com/cuj74/sibk/main/inventory.json").then(
+  fetch(inventoryByDomain).then(
           function(u){ return u.json();}
         ).then(
           function(json){

@@ -1,0 +1,61 @@
+{
+    "info": {
+      "phonenumber": "0701111111111",
+      "name": "Stöpen IBK per domain",
+      "message": "kiosk"
+    },
+    "sortiment" : [
+      {
+        "item": "Kaffe/Te",
+        "amount": 15
+      },
+      {
+        "item": "Kaffebröd",
+        "amount": 10
+      },
+      {
+        "item": "Dricka 33 cl",
+        "amount": 15
+      },
+      {
+        "item": "Festis",
+        "amount": 10
+      },
+      {
+        "item": "Korv, enkel",
+        "amount": 15
+      },
+      {
+        "item": "Korv, dubbel",
+        "amount": 20
+      },
+      {
+        "item": "Kexchoklad",
+        "amount": 15
+      },
+      {
+        "item": "Liten chokladbit",
+        "amount": 10
+      },
+      {
+        "item": "Ahlgrens bilar",
+        "amount": 20
+      },
+      {
+        "item": "Chips",
+        "amount": 15
+      },
+      {
+        "item": "Godispåse",
+        "amount": 10
+      },
+      {
+        "item": "Godisstång",
+        "amount": 5
+      },
+      {
+        "item": "Stora muffins",
+        "amount": 15
+      }
+    ]
+  }
