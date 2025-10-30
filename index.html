@@ -9,7 +9,7 @@
 let PhoneNumber = "";
 function populateinventory() {
   let inventorydata;  
-  let Name;
+  let KioskOwnerName;
   
   var domain = /:\/\/([^\/]+)/.exec(window.location.href)[1];
   console.log("Domain: " + domain.split('.')[0]);
@@ -22,7 +22,7 @@ function populateinventory() {
 
             document.title = "Kiosk " + json.info.name;
             PhoneNumber = json.info.phonenumber;
-            Name = json.info.name;
+            KioskOwnerName = json.info.name;
             var itable = document.getElementById("inventory");
             
             
@@ -415,7 +415,7 @@ function showswish() {
       modal.classList.add("hidden");
     });
 
-    document.getElementById("nameOf").innerHTML = json.info.name;
+    document.getElementById("nameOf").innerHTML = KioskOwnerName;
   </script>
     </body>
 </html>
