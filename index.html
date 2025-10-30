@@ -17,6 +17,7 @@ function populateinventory() {
   if(!subdomain){
     subdomain = domain[1].split('.')[0];
   }
+  console.log("Subdomain: " + subdomain);
   let inventoryByDomain = `https://raw.githubusercontent.com/cuj74/sibk/main/${subdomain}.json`
   fetch(inventoryByDomain).then(
           function(u){ return u.json();}
@@ -75,6 +76,23 @@ function remove(kitem) {
       orderinformation();
     }
 }
+function removeall(kitem) {  
+   
+    if (!itemlist.includes(kitem)) {
+        return ;
+    }
+
+    for (let i = itemlist.length - 1; i >= 0; i--) {
+        if (itemlist[i] === kitem) {
+            itemlist.splice(i, 1);
+        }
+    }
+      addaction = false;
+      orderinformation();
+
+}
+
+
 
 function emptycart() {  
     document.getElementById("total").innerHTML = "0";
@@ -110,7 +128,7 @@ function orderinformation()
       var headerrow = rtable.insertRow();
 
       var headerCellkey = headerrow.insertCell();
-      headerCellkey.colSpan="3";
+      headerCellkey.colSpan="4";
       headerCellkey.innerHTML = "<h4 id=\"orderid\"class=\"display-3\">Order " + Ordernum +"</h4>";
       
     }
@@ -139,8 +157,17 @@ function orderinformation()
         const h1_2 = document.createElement("h1");
         h1_2.setAttribute("class", "display-3");
         h1_2.appendChild(document.createTextNode(`${itemtotal}`));
-        newCelltot.appendChild(h1_2);     
-    }
+        newCelltot.appendChild(h1_2); 
+
+        var newCellRemove = newRow.insertCell();
+        const rem_1 = document.createElement("div");
+        rem_1.setAttribute("class", "btn btn-warning align-middle fw-bold");
+        rem_1.setAttribute("style", "margin-top: 25px;");
+        rem_1.setAttribute("onclick", "removeall('" + `${key}` + "')");
+        rem_1.appendChild(document.createTextNode("X"));
+        newCellRemove.appendChild(rem_1);     
+    
+     }
     if (totalorderamount > 0)
     {
         flashTotal();
@@ -168,6 +195,10 @@ function showswish() {
   handleInput();
   return 1
 }
+  function scrolltocart() {
+      var elem = document.getElementById("cart");
+      elem.scrollIntoView();
+  }
 </script>
 
 <style>
@@ -240,6 +271,21 @@ function showswish() {
 .disable-dbl-tap-zoom {
   touch-action: manipulation;
 }
+#floatie {
+    /* Use Bootstrap's position utilities */
+    z-index: 1030; /* Ensure it's above other content */
+    
+    /* Custom transition for a smooth fade and slide */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+}
+/* This class will be added by JavaScript to hide the floatie */
+        #floatie.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px); /* Slightly slide it down on hide */
+        }
 
 
   tr.spaceUnder>td {
@@ -288,10 +334,17 @@ function showswish() {
             <table id="inventory" class="table table-dark"></table>
         </div>
     </div>
-    <table id="cart" class="table table-dark"></table>
-     <div class="text-center"><h4><span id="KioskOwnerName"></span></h4></div>
+    <div id="stop-trigger">
+      <table id="cart" class="table table-dark"></table>
+    </div>
+    <div class="text-center"><h4><span id="KioskOwnerName"></span></h4></div>
     <span class="text-muted">v 0.5</span>
+    
 </div>
+
+    <div onclick="scrolltocart()" id="floatie" class="position-fixed bottom-0 end-0 m-3 m-md-4 p-3 bg-info text-white rounded-3 shadow-lg">
+        <strong class="fs-3">Order</strong>
+    </div>
 <script>
     populateinventory();
 
@@ -422,6 +475,43 @@ function showswish() {
       if (e.target !== modal && e.target !== container) return;     
       modal.classList.add("hidden");
     });
+
+    document.addEventListener('DOMContentLoaded', () => {
+            const floatie = document.getElementById('floatie');
+            const stopTrigger = document.getElementById('stop-trigger');
+
+            // Check if elements exist
+            if (!floatie || !stopTrigger) {
+                console.error('Could not find floatie or stop-trigger element.');
+                return;
+            }
+
+            // This is the callback function that runs when the intersection state changes
+            const observerCallback = (entries) => {
+                // We are only observing one element, so we can just take the first entry
+                const entry = entries[0];
+                
+                if (entry.isIntersecting) {
+                    // The stop-trigger div is visible, so HIDE the floatie
+                    floatie.classList.add('hidden');
+                } else {
+                    // The stop-trigger div is NOT visible, so SHOW the floatie
+                    floatie.classList.remove('hidden');
+                }
+            };
+
+            // Set up the observer options
+            const observerOptions = {
+                root: null, // 'null' means it observes intersections relative to the viewport
+                threshold: 0.1 // Triggers when 10% of the element is visible
+            };
+
+            // Create the Intersection Observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Tell the observer to watch the stop-trigger element
+            observer.observe(stopTrigger);
+        });
 
   </script>
     </body>
