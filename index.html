@@ -161,8 +161,8 @@ function orderinformation()
 
         var newCellRemove = newRow.insertCell();
         const rem_1 = document.createElement("div");
-        rem_1.setAttribute("class", "btn btn-warning align-middle fw-bold");
-        rem_1.setAttribute("style", "margin-top: 25px;");
+        rem_1.setAttribute("class", "btn btn-warning align-middle fs-2");
+        rem_1.setAttribute("style", "margin-top: 15px;");
         rem_1.setAttribute("onclick", "removeall('" + `${key}` + "')");
         rem_1.appendChild(document.createTextNode("X"));
         newCellRemove.appendChild(rem_1);     
@@ -343,7 +343,7 @@ function showswish() {
 </div>
 
     <div onclick="scrolltocart()" id="floatie" class="position-fixed bottom-0 end-0 m-3 m-md-4 p-3 bg-info text-white rounded-3 shadow-lg">
-        <strong class="fs-3">Order</strong>
+        <strong class="fs-2">Order</strong>
     </div>
 <script>
     populateinventory();
