@@ -43,10 +43,10 @@ function populateinventory() {
               newCellval.innerHTML = "<h4 class=\"display-3\"><div id=\""+`${value.item}` + "\">" + `${value.amount}` + "</div></h4>";
 
               var addButton = newRow.insertCell();
-              addButton.innerHTML = "<div class=\"btn btn-primary btn-lg\" style=\"width: 200px\" onclick=\"add('" + `${value.item}` + "')\" ><h4 class=\"display-3\">&nbsp;+&nbsp;</h4></div>";
+              addButton.innerHTML = "<div class=\"btn btn-primary btn-lg border border-white\" style=\"width: 200px\" onclick=\"add('" + `${value.item}` + "')\" ><h4 class=\"display-3\">&nbsp;+&nbsp;</h4></div>";
 
               var removeButton = newRow.insertCell();
-              removeButton.innerHTML = "<div class=\"btn btn-secondary btn-lg\" style=\"width: 200px\" onclick=\"remove('" + `${value.item}` + "')\" ><h4 class=\"display-3\">&nbsp;-&nbsp;</h4></div>";
+              removeButton.innerHTML = "<div class=\"btn btn-secondary btn-lg border border-white\" style=\"width: 200px\" onclick=\"remove('" + `${value.item}` + "')\" ><h4 class=\"display-3\">&nbsp;-&nbsp;</h4></div>";
                           
             }
           }
@@ -316,11 +316,11 @@ function showswish() {
       <div class="float-start col-6 display-4">
         Summa&nbsp;<span id="total" class="fw-bold">0</span> kr
       </div>
-      <div class="col-3 btn btn-primary" onclick="emptycart()">
+      <div class="col-3 btn btn-primary border border-white" onclick="emptycart()">
         <span class="text-center display-5">Rensa</span>
       </div>
       <div class="col-1"></div>
-      <div class="col-2 btn btn-primary" id="qrbutton">
+      <div class="col-2 btn btn-primary border border-white" id="qrbutton">
         <span class="text-center display-5">Swish</span>
       </div>
     </div>
